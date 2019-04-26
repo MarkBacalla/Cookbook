@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text-right">
+                Hi <strong> @ViewData["FullName"]!</strong>
+                <Br />
+                <a asp-action="logout" asp-controller="account">
+                    Logout
+                </a>
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div ng-controller="Recipe as vm" class="col-md">
+                <h3>Recipe</h3>
+                <div class="col-lg-10" style="margin-top: 50px;">
+                    <form>
+                        <div class="input-group">
+                            <input type="text" ng-model="vm.newRecipe" class="form-control" placeholder="Add Recipe" aria-label="Add Recipe" aria-describedby="btnGroupAddon">
+                            <div class="input-group-append">
+                                <button class="input-group-text" ng-click="vm.addRecipe()">+</button>
+                            </div>
+                        </div>
+
+                    </form>
+                    <div class="list-group" style="margin-top: 50px;">
+                        <a href="#" ng-repeat="recipe in vm.data.recipes" 
+                           ng-class="{ 'active' : recipe.id === vm.data.recipe.id }"
+                           ng-click="vm.clickRecipe(recipe)"
+                           class="list-group-item list-group-item-action">
+                            {{recipe.name}}
+                        </a>                                        
+                    </div>
+                </div>
+            </div>
+            <div ng-controller="Ingredient as vm" class="col-md">
+                <h3>Ingredients<button ng-click="vm.reset()" type="button" class="btn btn-secondary" style="margin-left: 100px">
+                    Create New Dish
+                </button></h3>
+                
+                <div class="col-lg-10" style="margin-top: 50px;">
+                    <form>
+                        <div class="input-group">
+                            <input type="text" ng-model="vm.newIngredient" class="form-control" placeholder="Add Ingredients" aria-label="Add Recipe" aria-describedby="btnGroupAddon">
+                            <div class="input-group-append">
+                                <button class="input-group-text" ng-click="vm.addIngredient()">+</button>
+                            </div>
+                        </div>
+
+                    </form>
+                    <ul class="list-group" style="margin-top: 50px;">
+                        <li class="list-group-item" ng-repeat="ingredient in vm.data.ingredients">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" 
+                                       ng-model="ingredient.isAvailable" 
+                                       ng-change="vm.clickIngredient(ingredient)"
+                                       id="{{ingredient.id + ingredient.name}}">
+                                <label class="form-check-label" for="{{ingredient.id + ingredient.name}}">
+                                    {{ingredient.name}}
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

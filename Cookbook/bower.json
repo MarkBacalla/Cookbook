@@ -1,0 +1,21 @@
+{
+  "name": "cookbook",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Mark Bacalla <mark.bacalla@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "v1.7.8",
+    "angular-toastr": "2.1.1"
+  }
+}
