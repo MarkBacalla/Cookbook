@@ -37,7 +37,9 @@ namespace Cookbook.Web
 
 
             services.AddDbContext<CookbookContext>(opts =>
-                opts.UseSqlServer(Configuration["ConnectionString:CookbookDB"]));
+                //opts.UseSqlServer(Configuration["ConnectionString:CookbookDB"])
+                opts.UseSqlite(Configuration["ConnectionString:CookbookSqliteDB"])
+                );
             services.AddScoped<IDataRepository<User, User>, UserRepository>();
             services.AddScoped<IDataRepository<Recipe, RecipeDto>, RecipeRepository>();
             services.AddScoped<IDataRepository<Ingredient, IngredientDto>, IngredientRepository>();

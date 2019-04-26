@@ -28,7 +28,8 @@ namespace Cookbook.Data.Models
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder
                     .UseLazyLoadingProxies()
-                    .UseSqlServer("Data Source=DELL-PC\\SQLEXPRESS;Initial Catalog=Cookbook;Integrated Security=True");
+                    //.UseSqlServer("Data Source=DELL-PC\\SQLEXPRESS;Initial Catalog=Cookbook;Integrated Security=True");
+                    .UseSqlite("Data Source=cookbook.db");
             }
         }
 
