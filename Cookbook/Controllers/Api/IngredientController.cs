@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Cookbook.Data.Dto;
 using Cookbook.Data.Models;
 using Cookbook.Data.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,7 @@ namespace Cookbook.Web.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class IngredientController : ControllerBase
     {
         private readonly IDataRepository<Ingredient, IngredientDto> _dataRepository;
@@ -20,15 +22,7 @@ namespace Cookbook.Web.Controllers.Api
         {
             _dataRepository = dataRepository;
         }
-
-        
-        // GET: api/Ingredient
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
+       
         // POST: api/Ingredient/ClearAvailability/1
         [HttpPost("{recipeId}")]
         [Route("[action]/{recipeId}")]
@@ -37,13 +31,6 @@ namespace Cookbook.Web.Controllers.Api
             (_dataRepository as IIngredientAvailabilty)?.ClearAll(recipeId);
             
             return Ok();
-        }
-
-        // GET: api/Ingredient/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
         }
 
         // POST: api/Ingredient
@@ -62,12 +49,6 @@ namespace Cookbook.Web.Controllers.Api
         {
             var statusUpdateRepo = _dataRepository as IIngredientAvailabilty;
             statusUpdateRepo?.Update(request.RecipeId, request.IngredientId, request.IsAvailable);
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 

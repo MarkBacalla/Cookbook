@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Cookbook.Data.Dto;
 using Cookbook.Data.Models;
 using Cookbook.Data.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,7 @@ namespace Cookbook.Mvc.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RecipeController : ControllerBase
     {
         private readonly IDataRepository<Recipe, RecipeDto> _dataRepository;
@@ -54,16 +56,5 @@ namespace Cookbook.Mvc.Controllers.Api
             return RedirectToAction("Get", new {id = latestAdd?.Id});
         }
 
-        // PUT: api/Recipe/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

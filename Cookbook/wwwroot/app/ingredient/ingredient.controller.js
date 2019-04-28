@@ -26,6 +26,7 @@
 
         function addIngredient() {
             dataservice.addIngredient(vm.newIngredient)
+                .then(dataservice.refreshRecipe)
                 .then(function() {
                     vm.newIngredient = '';
                 });

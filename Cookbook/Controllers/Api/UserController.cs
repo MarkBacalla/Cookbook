@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cookbook.Data.Models;
 using Cookbook.Data.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,7 @@ namespace Cookbook.Mvc.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IDataRepository<User, User> _dataRepository;
@@ -32,24 +34,6 @@ namespace Cookbook.Mvc.Controllers.Api
         public User Get(int id)
         {
             return _dataRepository.Get(id);
-        }
-
-        // POST: api/User
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT: api/User/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }
